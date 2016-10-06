@@ -32,15 +32,15 @@ def check_hand(hand):
 		    clubs += 1
 	sorted_hand = sorted(hand, reverse=True)
 	
-	is_a_staright = True
+	is_a_straight = True
 	ahead_works = True
 	behind_works = True
 	ahead = 1
 	behind = 1
 	straight_count = 1
 	loop_counter = 0
-	while is_a_staright:
-		if loop_counter <= 5:
+	while is_a_straight:
+		if loop_counter <= 4:
 			if behind_works:
 				if behind <= 3:
 					if sorted_hand[3][0] is (sorted_hand[(3-behind)][0] - 1):
@@ -58,15 +58,24 @@ def check_hand(hand):
 					else:
 						ahead_works = False
 			if ahead_works is False and behind_works is False:
-				is_a_staright = False
+				is_a_straight = False
 			if straight_count is 5:
-				global straight_counter 
-				straight_counter += 1
+				pass
+				
 			loop_counter += 1
 		else:
-			is_a_staright = False
+			# is_a_straight = False
+			break
+	if is_a_straight:
+		global straight_counter 
+		straight_counter += 1
+		#print("STRAIGHT")
+		#print(sorted_hand)
+	# else:
+	# 	print("NOT A STRAIGHT")
+	# 	print(sorted_hand)
 	# print("Clubs: " + str(clubs) + " Hearts: " + str(hearts) + " Diamonds: " + str(diamonds) + " Spades: " + str(spades))
-	if spades is 5 or diamonds is 5 or hearts is 5 or clubs is 5:
+	if spades == 5 or diamonds == 5 or hearts == 5 or clubs == 5:
 		global flush_counter 
 		flush_counter += 1
 		#print("FLUSH BRUH")
