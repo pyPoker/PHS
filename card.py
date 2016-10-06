@@ -21,7 +21,8 @@ def check_hand(hand):
 	hearts = 0
 	clubs = 0
 	diamonds = 0
-	for x in hand:
+	sorted_hand = sorted(hand, reverse=True)
+	for x in sorted_hand:
 		if x[1] == "SP":
 			spades += 1
 		elif x[1] == "DI":
@@ -30,7 +31,6 @@ def check_hand(hand):
 			hearts += 1
 		else:
 		    clubs += 1
-	sorted_hand = sorted(hand, reverse=True)
 	
 	is_a_straight = True
 	ahead_works = True
@@ -43,7 +43,8 @@ def check_hand(hand):
 		if loop_counter <= 4:
 			if behind_works:
 				if behind <= 3:
-					if sorted_hand[3][0] is (sorted_hand[(3-behind)][0] - 1):
+					# print("Is " + str(sorted_hand[3][0]) + " == " + str(sorted_hand[(3-behind)][0] - behind))
+					if sorted_hand[3][0] is (sorted_hand[(3-behind)][0] - behind):
 						behind += 1
 						straight_count += 1
 						# print("BEHIND")
@@ -51,7 +52,8 @@ def check_hand(hand):
 						behind_works = False
 			if ahead_works:
 				if ahead <= 3:
-					if sorted_hand[3][0] is (sorted_hand[(3+ahead)][0] + 1):
+					# print("Is " + str(sorted_hand[3][0]) + " == " + str(sorted_hand[(3+ahead)][0] + ahead))
+					if sorted_hand[3][0] is (sorted_hand[(3+ahead)][0] + ahead):
 						ahead += 1
 						straight_count += 1
 						# print("AHEAD")
@@ -69,20 +71,39 @@ def check_hand(hand):
 	if is_a_straight:
 		global straight_counter 
 		straight_counter += 1
-		#print("STRAIGHT")
-		#print(sorted_hand)
-	# else:
-	# 	print("NOT A STRAIGHT")
-	# 	print(sorted_hand)
-	# print("Clubs: " + str(clubs) + " Hearts: " + str(hearts) + " Diamonds: " + str(diamonds) + " Spades: " + str(spades))
-	if spades == 5 or diamonds == 5 or hearts == 5 or clubs == 5:
+		print("STRAIGHT")
+	
+
+	#print("Spades: " + str(spades) + " Hearts: " + str(hearts) + " Clubs: " + str(clubs) + " Diamonds: " + str(diamonds))
+	if spades >= 5 or diamonds >= 5 or hearts >= 5 or clubs >= 5:
 		global flush_counter 
 		flush_counter += 1
-		#print("FLUSH BRUH")
+		print("FLUSH")
 
-def main():
+def run_test():
+	deck = [(2,'HE'),(3,'HE'),(10,'HE'),(11,'HE'),(12,'HE'),(13,'HE'),(14,'HE')]
+	print("Should be: Royal Flush")
+	check_hand(deck)
+
+	deck = [(2,'HE'),(3,'HE'),(4,'HE'),(5,'HE'),(6,'HE'),(7,'HE'),(8,'HE')]
+	print("Should be: Straight Flush")
+	check_hand(deck)
+	
+
+	deck = [(2,'HE'),(2,'CL'),(4,'HE'),(5,'CL'),(6,'HE'),(7,'HE'),(8,'CL')]
+	print("Should be: Straight")
+	check_hand(deck)
+	
+
+	deck = [(10,'HE'),(2,'CL'),(4,'CL'),(9,'CL'),(6,'CL'),(7,'HE'),(11,'CL')]
+	print("Should be: Flush")
+	check_hand(deck)
+	
+
+
+def run_loop():
 	deck = copy_cards()
-	for x in xrange(1,100000):
+	for x in xrange(1,100):
 		hand_results = []
 		for x in range(0,7):
 		    random.shuffle(deck)
@@ -96,6 +117,10 @@ def main():
 	percent_flush = flush_counter / 100000
 	percent_straight = straight_counter / 100000
 	print("Flush: " + str(flush_counter) + " Percent: " + str(percent_flush) + " Straights: " + str(straight_counter) + " Percent: " + str(percent_straight))
+
+def main():
+	#run_loop()
+	run_test()
 
 if __name__ == '__main__':
     main()
