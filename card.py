@@ -45,9 +45,14 @@ def check_hand(hand):
 				if behind <= 3:
 					# print("Is " + str(sorted_hand[3][0]) + " == " + str(sorted_hand[(3-behind)][0] - behind))
 					if sorted_hand[3][0] is (sorted_hand[(3-behind)][0] - behind):
-						behind += 1
+						
 						straight_count += 1
+						# print(sorted_hand[(3-behind)])
+						# print(sorted_hand[3-behind])
+						# print(len(sorted_hand))
+						# print("Index " + str(3-behind))
 						straight_deck.append(sorted_hand[(3-behind)])
+						behind += 1
 						# print("BEHIND")
 					else:
 						behind_works = False
@@ -55,9 +60,14 @@ def check_hand(hand):
 				if ahead <= 3:
 					# print("Is " + str(sorted_hand[3][0]) + " == " + str(sorted_hand[(3+ahead)][0] + ahead))
 					if sorted_hand[3][0] is (sorted_hand[(3+ahead)][0] + ahead):
-						ahead += 1
+						
 						straight_count += 1
+						# print("Ahead is: " + str(ahead))
+						# print(sorted_hand[(3+ahead)])
+						# print(len(sorted_hand))
+						# print("Index " + str(3+ahead))
 						straight_deck.append(sorted_hand[(3+ahead)])
+						ahead += 1
 						# print("AHEAD")
 					else:
 						ahead_works = False
