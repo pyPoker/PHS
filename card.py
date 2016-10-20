@@ -2,7 +2,7 @@ from __future__ import division
 import random
 from operator import itemgetter, attrgetter
 
-
+# Deck of cards
 deck_of_cards = [(2,'SP'),(3,'SP'),(4,'SP'),(5,'SP'),(6,'SP'),(7,'SP'),(8,'SP'),(9,'SP'),
 (10,'SP'),(11,'SP'),(12,'SP'),(13,'SP'),(14,'SP'),(2,'CL'),(3,'CL'),(4,'CL'),(5,'CL'),
 (6,'CL'),(7,'CL'),(8,'CL'),(9,'CL'),(10,'CL'),(11,'CL'),(12,'CL'),(13,'CL'),(14,'CL'),
@@ -10,6 +10,7 @@ deck_of_cards = [(2,'SP'),(3,'SP'),(4,'SP'),(5,'SP'),(6,'SP'),(7,'SP'),(8,'SP'),
 (11,'DI'),(12,'DI'),(13,'DI'),(14,'DI'),(2,'HE'),(3,'HE'),(4,'HE'),(5,'HE'),(6,'HE'),
 (7,'HE'),(8,'HE'),(9,'HE'),(10,'HE'),(11,'HE'),(12,'HE'),(13,'HE'),(14,'HE')]
 
+# Counter variables for tracking hand types
 royal_flush_counter = 0
 straight_flush_counter = 0
 four_of_a_kind = 0
@@ -21,9 +22,14 @@ two_pair_counter = 0
 pair_counter = 0
 high_card_counter = 0
 
+# Makes a copy of the deck
 def copy_cards():
 	return list(deck_of_cards)
 
+# So far this checks for straights, flushes, straight flushes, and royal flushes
+# THis needs to check for pairs, trips, quads, and full houses
+# Also if none return the high card
+# Need to also break this function up 
 def check_hand(hand):
 	spades = 0
 	hearts = 0
@@ -107,7 +113,7 @@ def check_hand(hand):
 
 	
 		
-
+# Few test cases 
 def run_test():
 	deck = [(2,'HE'),(3,'HE'),(10,'HE'),(11,'HE'),(12,'HE'),(13,'HE'),(14,'HE')]
 	print("Should be: Royal Flush")
@@ -126,7 +132,7 @@ def run_test():
 	check_hand(deck)
 	
 
-
+# Runs the program x times
 def run_loop():
 	deck = copy_cards()
 	for x in xrange(1,100000):
