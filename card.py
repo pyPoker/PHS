@@ -28,7 +28,7 @@ def copy_cards():
 
 # So far this checks for straights, flushes, straight flushes, and royal flushes
 # This needs to check for pairs, trips, quads, and full houses
-# Also if none return the high card
+# If none return the high card
 # Need to also break this function up 
 def check_hand(hand):
 	spades = 0
