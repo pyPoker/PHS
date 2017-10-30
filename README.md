@@ -1,2 +1,2 @@
 # PHS
-# poker bot amirite
+### Simulates a hand of poker
